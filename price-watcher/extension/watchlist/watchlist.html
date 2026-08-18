@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Price Watcher - Watchlist</title>
+
+    <link
+        rel="stylesheet"
+        href="watchlist.css"
+    >
+</head>
+
+<body>
+
+<header class="page-header">
+
+    <div class="brand">
+        <img
+            src="../icons/icon48.png"
+            alt="Price Watcher"
+        >
+
+        <div>
+            <h1>Price Watcher</h1>
+            <p>La tua watchlist</p>
+        </div>
+    </div>
+
+    <div class="header-actions">
+        <button id="refreshButton">
+            ↻ Aggiorna
+        </button>
+    </div>
+
+</header>
+
+
+<main>
+
+    <section
+        id="emptyState"
+        class="empty-state hidden"
+    >
+        <img
+            src="icons/icon48.png"
+            alt=""
+        >
+
+        <h2>La watchlist è vuota</h2>
+
+        <p>
+            Aggiungi un prodotto dal popup
+            dell'estensione.
+        </p>
+    </section>
+
+
+    <section
+        id="watchlist"
+        class="watchlist"
+    ></section>
+
+</main>
+
+
+<script src="watchlist.js"></script>
+<script src="watchlist-page.js"></script>
+
+</body>
+</html>

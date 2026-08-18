@@ -1,0 +1,35 @@
+body {
+    width: 300px;
+    padding: 16px;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+#product {
+    margin: 16px 0;
+}
+
+#product h3 {
+    font-size: 14px;
+}
+
+#product p {
+    margin: 6px 0;
+}
+
+#addToWatchlist {
+	width: 100%;
+	padding: 8px;
+	cursor: pointer;
+	background-color: rgba(13, 145, 124, 0.1);
+}
+
+#refresh {
+    width: 100%;
+    padding: 8px;
+    cursor: pointer;
+}
