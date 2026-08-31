@@ -1,20 +1,18 @@
-import type { Watchlist } from "../models/Watchlist";
+import { Watchlist } from "../models/Watchlist";
+import { ExtensionBridge } from "../services/ExtensionBridge";
 
 export class WatchlistService {
 
-  async getWatchlist(): Promise<Watchlist> {
-    const response = await chrome.runtime.sendMessage({
-      type: "GET_WATCHLIST"
-    });
+  private bridge = new ExtensionBridge();
 
-    return response.watchlist;
+  async getWatchlist(): Promise<Watchlist> {
+    const data = await this.bridge.getWatchlist();
+
+    // trasformiamo i dati ricevuti in una Watchlist
+    return new Watchlist(data);
   }
 
   async saveWatchlist(watchlist: Watchlist): Promise<void> {
-    await chrome.runtime.sendMessage({
-      type: "SAVE_WATCHLIST",
-      watchlist
-    });
+    await this.bridge.saveWatchlist(watchlist);
   }
 }
-

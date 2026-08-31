@@ -3,14 +3,14 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import Navbar from "./components/Navbar"
-import SideWatchlist from './components/SideWatchlist/SideWatchlist'
+import Zoteboard from './components/Dashboard/Dasboard'
 
 function App() {
 
   return (
     <>
       <Navbar></Navbar>
-      <SideWatchlist></SideWatchlist> 
+      <Zoteboard></Zoteboard> 
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />

@@ -1,11 +1,20 @@
-import { defineConfig } from 'vite'
-import react, { reactCompilerPreset } from '@vitejs/plugin-react'
-import babel from '@rolldown/plugin-babel'
+import { defineConfig } from "vite";
+import react, { reactCompilerPreset } from "@vitejs/plugin-react";
+import babel from "@rolldown/plugin-babel";
+import { cpSync } from "fs";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    babel({ presets: [reactCompilerPreset()] })
-  ],
-})
+    babel({ presets: [reactCompilerPreset()] }),
+
+    {
+      name: "copy-extension",
+      closeBundle() {
+        cpSync("extension", "dist", {
+          recursive: true
+        });
+      }
+    }
+  ]
+});

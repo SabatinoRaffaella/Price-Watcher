@@ -5,8 +5,8 @@
   "description": "Controlla il prezzo dei prodotti Amazon.",
   "permissions": [
     "activeTab",
-	"storage",
-	"notifications"
+    "storage",
+    "notifications"
   ],
   "action": {
     "default_popup": "popup/popup.html",
@@ -21,13 +21,16 @@
     "32": "icons/icon32.png",
     "48": "icons/icon48.png"
   },
+  "background": {
+    "service_worker": "background/serviceWorker.js"
+  },
   "content_scripts": [
     {
       "matches": [
         "https://*.amazon.it/*"
       ],
       "js": [
-		"content/parsers/amazon.js",
+        "content/parsers/amazon.js",
         "content/parser-manager.js",
         "content/content.js"
       ]

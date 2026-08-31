@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-	<link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="popup.css">
     <meta charset="UTF-8">
     <title>Price Watcher</title>
 </head>
 
 <body>
     <div class="header">
-		<img src="../icons/icon48.png" alt="Price Watcher">
-		<h2>Price Watcher</h2>
-	</div>
+        <img src="../icons/icon48.png" alt="Price Watcher">
+        <h2>Price Watcher</h2>
+    </div>
 
     <div id="product">
         <p>Caricamento...</p>
     </div>
-	
-	<div id="Watchlist">
-		<button id="watchlistButton">⭐ Aggiungi alla Watchlist</button>
-	
-		<button id="openWatchlist">
-			📋 Watchlist
-		</button>
-	</div>	
+
+    <div id="Watchlist">
+        <button id="watchlistButton">
+            ⭐ Aggiungi alla Watchlist
+        </button>
+
+        <button id="openWatchlist">
+            📋 Watchlist
+        </button>
+
+        <button id="openDashboard">
+            📊 Dashboard
+        </button>
+    </div>
+
     <button id="refresh">
         Aggiorna
     </button>
-	<script src="../watchlist/watchlist.js"></script>
-	
-	<script src="popup.js"></script>
+
+    <script src="../watchlist/watchlist.js"></script>
+    <script src="popup.js"></script>
 </body>
 </html>

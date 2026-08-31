@@ -1,7 +1,11 @@
 import type { Product } from "./Product";
 
 export class Watchlist {
-  private products: Product[] = [];
+   private products: Product[];
+
+  constructor(products: Product[] = []) {
+    this.products = products;
+  }
 
   add (product: Product): void{
     this.products.push(product);

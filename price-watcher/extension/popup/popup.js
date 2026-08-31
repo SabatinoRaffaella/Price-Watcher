@@ -126,3 +126,11 @@ watchlistButton.addEventListener(
 );
 
 updateProduct();
+
+const openDashboard = document.getElementById("openDashboard");
+
+openDashboard.addEventListener("click", () => {
+    chrome.tabs.create({
+        url: chrome.runtime.getURL("index.html")
+    });
+});
