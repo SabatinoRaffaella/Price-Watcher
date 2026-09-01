@@ -4,6 +4,7 @@ var amazonParser = {
     },
 
    getProductInformations() {
+    console.log("🟠 AMAZON PARSER CHIAMATO");
     const whole = document.querySelector(".a-price-whole");
     const decimal = document.querySelector(".a-price-decimal");
 
@@ -15,6 +16,7 @@ var amazonParser = {
     const decimalText = decimal.textContent.trim().replace(/\D/g, "");
 
     const price = Number(`${wholeText}.${decimalText}`);
+    const image = document.querySelector("#landingImage");
 
     return {
         name: findProductName(),
@@ -22,7 +24,8 @@ var amazonParser = {
 		discountPercentage: findDiscountPercentage(),
 		currency: "EUR",
 		url: window.location.href,
-		site: window.location.hostname
+		site: window.location.hostname,
+        imageUrl: image?.src ?? null 
     };
 	}
 };

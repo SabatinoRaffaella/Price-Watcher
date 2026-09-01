@@ -55,7 +55,14 @@ function createWatchlistItem(item) {
 
     info.className = "product-info";
 
+    const image = document.createElement("img");
 
+    image.className = "product-thumbnail";
+    image.src = item.imageUrl ?? "";
+    image.alt = item.name ?? "Prodotto";
+
+    content.appendChild(image);
+    
     const priceBlock =
         createInfoBlock(
             "Prezzo",
@@ -160,6 +167,8 @@ function createWatchlistItem(item) {
     content.appendChild(url);
 
     content.appendChild(info);
+
+    content.appendChild(image);
 
     content.appendChild(targetControl);
 

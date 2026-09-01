@@ -1,5 +1,5 @@
-import pricewatcherLogo from '../assets/pricewatcher.svg'
-import "./Navbar.css";
+import pricewatcherLogo from '../../assets/pricewatcher.svg'
+import "../Navbar/Navbar.css";
 
 function Navbar() {
   return (

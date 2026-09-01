@@ -64,7 +64,8 @@ async function addToWatchlist(
         currentDiscount: product.discountPercentage,
 
         targetDiscount,
-
+        
+        imageUrl: product.imageUrl,
         // Ultima soglia significativa che ha generato una notifica.
         // 0 significa "nessuna notifica ancora".
         lastNotifiedThreshold: 0,

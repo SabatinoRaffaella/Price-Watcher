@@ -4,4 +4,5 @@ export type Product = {
   url: string;
   imageUrl?: string;
   currentPrice: number;
+  thumbnail?: string;
 };

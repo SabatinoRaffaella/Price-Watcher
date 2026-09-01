@@ -30,7 +30,8 @@ function getProductInformations() {
     const parser = parsers.find(
         parser => parser.matches(window.location.hostname)
     );
-
+    console.log(parser);
+    
     return parser
         ? parser.getProductInformations()
         : null;

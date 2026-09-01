@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
+import "../Dashboard/Dashboard.css";
+
 import { WatchlistService } from "../../services/WatchlistService";
 import SideWatchlist from "../SideWatchlist/SideWatchlist";
 import type { Watchlist } from "../../models/Watchlist";
+import type { Product } from "../../models/Product";
+import ProductDetails from "../ProductDetails/ProductDetails";
 
 function Dashboard() {
+  const [selectedProduct, setSelectedProduct] =
+    useState<Product | null>(null);
   const [watchlist, setWatchlist] = useState<Watchlist>();
 
   useEffect(() => {
@@ -13,10 +19,16 @@ function Dashboard() {
   }, []);
 
   return (
-    <div className="dashboard">
-      <SideWatchlist watchlist={watchlist} />
+    <div className="layout">
+      <SideWatchlist
+        watchlist={watchlist}
+        selectedProduct={selectedProduct}
+        onSelectProduct={setSelectedProduct}
+      />
 
-      {/* altri componenti della dashboard */}
+      <main className="content">
+          <ProductDetails product={selectedProduct} />
+      </main>
     </div>
   );
 }
