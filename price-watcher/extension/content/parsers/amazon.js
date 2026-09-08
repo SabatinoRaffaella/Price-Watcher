@@ -19,6 +19,7 @@ var amazonParser = {
     const image = document.querySelector("#landingImage");
 
     return {
+        id: getAmazonProductId(),
         name: findProductName(),
 		price,
 		discountPercentage: findDiscountPercentage(),
@@ -29,6 +30,14 @@ var amazonParser = {
     };
 	}
 };
+
+function getAmazonProductId(){
+  const match = window.location.pathname.match(
+    /\/(?:dp|gp\/product)\/([A-Z0-9]{10})/i
+  );
+
+  return match?.[1] ?? null;
+}
 
 function findDiscountPercentage() {
     const element = document.querySelector(

@@ -56,6 +56,7 @@ async function addToWatchlist(
     );
 
     const item = {
+        id: product.id,
         url: product.url,
         name: product.name,
         site: product.site,
@@ -73,7 +74,10 @@ async function addToWatchlist(
         // Timestamp dell'ultima notifica.
         lastNotification: null
     };
+    const priceHistory = new PriceHistory(product.id);
 
+    priceHistory.add(product.price);
+    
     if (existingIndex >= 0) {
         watchlist[existingIndex] = {
             ...watchlist[existingIndex],

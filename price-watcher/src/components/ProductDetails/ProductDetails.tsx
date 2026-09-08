@@ -11,6 +11,7 @@ function ProductDetails({ product }: ProductDetailsProps) {
 
   return (
     <div className="product-details">
+      <h1 className="id">{product.id}</h1>
       <h1 className="title">{product.name}</h1>
       <p className="price">{product.currentPrice} €</p>
       <img
