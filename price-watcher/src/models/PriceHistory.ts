@@ -1,6 +1,6 @@
 export type PriceRecord = {
   price: number;
-  date: number;
+  timestamp: number;
 };
 
 export class PriceHistory {
@@ -12,17 +12,17 @@ export class PriceHistory {
     this.productId = productId;
   }
 
-  add(price: number, date = Date.now()) {
+  add(price: number, timestamp = Date.now()) {
     const last = this.records[this.records.length - 1];
 
     // Nessuna variazione → non registrare nulla
     if (last?.price === price) {
-      return;
+      return false;
     }
 
     const record: PriceRecord = {
       price,
-      date,
+      timestamp,
     };
 
     this.records.push(record);
@@ -36,6 +36,7 @@ export class PriceHistory {
     if (this.records.length > 4) {
       this.records.shift();
     }
+    return true;
   }
 
   get id() {
@@ -49,4 +50,36 @@ export class PriceHistory {
   get minimum() {
     return this.minPrice;
   }
+
+  getRecords() {
+    return this.records;
+  }
+
+  get length(){
+    return this.records.length;
+  }
+
+  toJSON() {
+    return {
+      productId: this.productId,
+      records: this.records,
+      minPrice: this.minPrice
+    };
+  }
+
+  static fromJSON(data: {
+    productId: string;
+    records: PriceRecord[];
+    minPrice: PriceRecord | null;
+  }): PriceHistory {
+
+    const history = new PriceHistory(data.productId);
+
+    history.records = [...data.records];
+    history.minPrice = data.minPrice;
+
+    return history;
+  }
+
+  
 }

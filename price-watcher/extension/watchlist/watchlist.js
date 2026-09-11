@@ -1,18 +1,18 @@
 const DEFAULT_TARGET_DISCOUNT = 20;
 const NOTIFICATION_COOLDOWN = 24 * 60 * 60 * 1000;
 const NOTIFICATION_STEP = 10;
-
+import { recordPrice } from "../priceHistory/priceHistory.js";
 
 /**
  * Restituisce la watchlist salvata.
  */
-async function getWatchlist() {
+export async function getWatchlist() {
     const result = await chrome.storage.local.get("watchlist");
 
     return result.watchlist ?? [];
 }
 
-async function isInWatchlist(url) {
+export async function isInWatchlist(url) {
     const result = await chrome.storage.local.get("watchlist");
 
     const watchlist = result.watchlist ?? [];
@@ -25,7 +25,7 @@ async function isInWatchlist(url) {
 /**
  * Salva la watchlist.
  */
-async function saveWatchlist(watchlist) {
+export async function saveWatchlist(watchlist) {
     await chrome.storage.local.set({
         watchlist
     });
@@ -45,7 +45,7 @@ async function saveWatchlist(watchlist) {
  *   site
  * }
  */
-async function addToWatchlist(
+export async function addToWatchlist(
     product,
     targetDiscount = DEFAULT_TARGET_DISCOUNT
 ) {
@@ -65,25 +65,22 @@ async function addToWatchlist(
         currentDiscount: product.discountPercentage,
 
         targetDiscount,
-        
-        imageUrl: product.imageUrl,
-        // Ultima soglia significativa che ha generato una notifica.
-        // 0 significa "nessuna notifica ancora".
-        lastNotifiedThreshold: 0,
 
-        // Timestamp dell'ultima notifica.
+        imageUrl: product.imageUrl,
+
+        lastNotifiedThreshold: 0,
         lastNotification: null
     };
-    const priceHistory = new PriceHistory(product.id);
 
-    priceHistory.add(product.price);
-    
     if (existingIndex >= 0) {
         watchlist[existingIndex] = {
             ...watchlist[existingIndex],
             ...item
         };
     } else {
+        // Prima aggiunta → primo punto dello storico
+        await recordPrice(product.id, product.price);
+
         watchlist.push(item);
     }
 

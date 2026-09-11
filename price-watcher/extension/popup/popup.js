@@ -2,6 +2,8 @@ const productElement = document.getElementById("product");
 const refreshButton = document.getElementById("refresh");
 const watchlistButton = document.getElementById("watchlistButton");
 
+import { isInWatchlist, addToWatchlist } from "../watchlist/watchlist.js";
+
 let currentProduct = null;
 
 async function sendMessageToContent(tabId, message, retries = 10) {
